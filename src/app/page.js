@@ -58,22 +58,25 @@ export default function Page() {
     };
     useEffect(() => {}, [data]);
     return (
-        <div className="flex min-h-screen flex-col items-center justify-between p-1">
+        <div className="flex min-h-[120vh] flex-col items-center justify-between p-1 bg-gray-950 text-white">
             <Head>
                 <title>PYTH Airdrop checker</title>
 
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
+                <div className="font-semibold font-sans pt-7 pb-2 text-xl">
+                    Check your $PYTH Token Allocation for all address at once.
+                    Enter each address in new line - press enter key{" "}
+                </div>
                 <div className="mt-5">
                     <label className="pr-5">Enter your EVM Addresses: </label>
                     <textarea
-                        className="p-2 rounded border-redborder border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="p-2 rounded border-redborder border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         name="allEvmAddresses"
                         placeholder="Enter All EVM Address in new line"
-                        cols={60}
+                        cols={70}
                         rows={3}
-                        // value={addresses["evm_addresses"]}
                         onChange={raw_evm_address}
                     />
                 </div>
@@ -82,12 +85,11 @@ export default function Page() {
                 <div className="mt-5">
                     <label className="pr-5">Enter your SOL Addresses: </label>
                     <textarea
-                        className="p-2 rounded border-redborder border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="p-2 rounded border-redborder border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         name="allSolAddresses"
                         placeholder="Enter All SOL Address in new line"
-                        cols={60}
+                        cols={70}
                         rows={3}
-                        // value={addresses["sol_addresses"]}
                         onChange={raw_sol_address}
                     />
                 </div>
@@ -95,27 +97,29 @@ export default function Page() {
                 <div className="mt-5">
                     <label className="pr-5">Enter your SUI Addresses: </label>
                     <textarea
-                        className="p-2 rounded border-redborder border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="p-2 rounded border-redborder border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         name="allSuiAddresses"
                         placeholder="Enter All SUI Address in new line"
-                        cols={60}
+                        cols={70}
                         rows={3}
-                        // value={addresses["sui_addresses"]}
                         onChange={raw_sui_address}
                     />
                 </div>
                 <br />
-                <div className="flex  flex-col items-center justify-between">
+                <div className="flex  flex-col items-center justify-between min-w-[100px]">
                     <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded "
+                        className="bg-red-800 hover:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-900 rounded min-w-[40px]"
                         onClick={fetchAmount}
                     >
                         Check $PYTH Allocation
                     </button>
                 </div>
-                <div className="p-10">
+                <div className="p-5">
                     <ul className="flex flex-col text-lg">
-                        <li className="flex font-bold w-50 h-9" key={"total"}>
+                        <li
+                            className="flex font-bold text-ellipsis text-2xl w-50 h-9 justify-center text-green-500"
+                            key={"total"}
+                        >
                             {"Total =>"}{" "}
                             {data["evm_total"] +
                                 data["sol_total"] +
@@ -133,6 +137,29 @@ export default function Page() {
                             {"Sui =>"} {data["sui_total"]} $PYTH
                         </li>
                     </ul>
+                </div>
+
+                <div>
+                    <p className="  font-semibold  text-xl w-50 h-8 justify-center text-green-200">
+                        If this helped you {"=>"} please consider supporting me{" "}
+                        <br />
+                        ETH/OP/ARB/Polygon EVM Add: &nbsp;
+                        <span className="text-red-300">
+                            0xab740b1b0edf7a05f2d10765c4670eab102eeaf5
+                        </span>
+                        <br />
+                        SUI Add:&nbsp;
+                        <span className="text-red-300">
+                            0x17ece16c0381347d2c39d961338acc1218a627516a217fa7f868d5ab71e1e43d
+                        </span>
+                        <br />
+                        SOL Add:&nbsp;
+                        <span className="text-red-300">
+                            {" "}
+                            Bk5CSA3nsXaoBwNYmFYs7mpjjjKgNs5yh4qUXstB175g{" "}
+                        </span>
+                        [ accepting $PYTH too if you got xD]
+                    </p>
                 </div>
             </main>
         </div>
