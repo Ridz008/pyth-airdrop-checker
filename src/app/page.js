@@ -16,8 +16,6 @@ export default function Page() {
     });
 
     const fetchAmount = async () => {
-        console.log(`fetchAmt called`);
-        console.log(addresses);
         const response = await fetch("/api/checkAllocation", {
             method: "POST",
             body: JSON.stringify({
@@ -28,7 +26,6 @@ export default function Page() {
             },
         });
         const data = await response.json();
-        console.log(data);
         setData(data);
     };
 
@@ -38,7 +35,6 @@ export default function Page() {
         let local_copy = addresses;
         local_copy["evm_addresses"] = raw_data;
         setAddresses(local_copy);
-        console.log(addresses);
     };
     const raw_sol_address = (e) => {
         let raw_data = e.target.value;
@@ -46,7 +42,6 @@ export default function Page() {
         let local_copy = addresses;
         local_copy["sol_addresses"] = raw_data;
         setAddresses(local_copy);
-        console.log(addresses);
     };
     const raw_sui_address = (e) => {
         let raw_data = e.target.value;
@@ -54,7 +49,6 @@ export default function Page() {
         let local_copy = addresses;
         local_copy["sui_addresses"] = raw_data;
         setAddresses(local_copy);
-        console.log(addresses);
     };
     useEffect(() => {}, [data]);
     return (
@@ -72,7 +66,7 @@ export default function Page() {
                 <div className="mt-5">
                     <label className="pr-5">Enter your EVM Addresses: </label>
                     <textarea
-                        className="p-2 rounded border-redborder border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="p-2 rounded border-redborder focus:ring-blue-500 focus:border-blue-500 bg-gray-700 border-gray-600 dark:placeholder-gray-300"
                         name="allEvmAddresses"
                         placeholder="Enter All EVM Address in new line"
                         cols={70}
@@ -81,11 +75,10 @@ export default function Page() {
                     />
                 </div>
 
-                <br />
                 <div className="mt-5">
                     <label className="pr-5">Enter your SOL Addresses: </label>
                     <textarea
-                        className="p-2 rounded border-redborder border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="p-2 rounded border-redborder focus:ring-blue-500 focus:border-blue-500 bg-gray-700 border-gray-600 dark:placeholder-gray-300"
                         name="allSolAddresses"
                         placeholder="Enter All SOL Address in new line"
                         cols={70}
@@ -93,11 +86,10 @@ export default function Page() {
                         onChange={raw_sol_address}
                     />
                 </div>
-                <br />
                 <div className="mt-5">
                     <label className="pr-5">Enter your SUI Addresses: </label>
                     <textarea
-                        className="p-2 rounded border-redborder border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="p-2 rounded border-redborder focus:ring-blue-500 focus:border-blue-500 bg-gray-700 border-gray-600 dark:placeholder-gray-300"
                         name="allSuiAddresses"
                         placeholder="Enter All SUI Address in new line"
                         cols={70}
@@ -114,7 +106,12 @@ export default function Page() {
                         Check $PYTH Allocation
                     </button>
                 </div>
-                <div className="p-5">
+
+                <div className="flex font-semibold font-sans pt-2   justify-center">
+                    If it remains 0 after pressing button - it means no
+                    allocation
+                </div>
+                <div className="p-2">
                     <ul className="flex flex-col text-lg">
                         <li
                             className="flex font-bold text-ellipsis text-2xl w-50 h-9 justify-center text-green-500"
